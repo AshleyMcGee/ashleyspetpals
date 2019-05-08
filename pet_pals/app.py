@@ -12,18 +12,16 @@ from flask import (
 #################################################
 app = Flask(__name__)
 
-from pet_pals.app import db
-
-db.create_all()
 #################################################
 # Database Setup
 #################################################
 
 from flask_sqlalchemy import SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL', '') or "sqlite:///db.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL', '')
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 db = SQLAlchemy(app)
 
+db.create_all()
 
 from .models import Pet
 
